@@ -39,7 +39,5 @@ function updatePage(userid) {
     console.log("New userid selected: " + userid);
     getMetaData(userid);  }
 
-d3.selectAll("#selectOption").on("change", updatePage);
-
 buildSelector()
 
