@@ -43,8 +43,21 @@ function buildCharts(userid) {
         let otu_ids = testSubject.otu_ids;
         let otu_labels = testSubject.otu_labels;
         let sample_values = testSubject.sample_values;
+        let person = data.metadata.filter(subject => subject.id == userid)[0];
         
         // Build Wash Frequency Gauge
+        let trace3 = [{
+            value: person.wfreq,
+            title: { text: "Washing Frequency"},
+            type: "indicator",
+            mode: "gauge+number",
+            gauge:{ axis: { range: [0,11] } }
+        }]
+        let gaugeLayout = {
+            width: 600,
+            height:400
+        }
+        Plotly.newPlot('gauge', trace3, gaugeLayout);
         
         //Build the Bubble Graph
         let bubbleGraph = [{x: otu_ids, y: sample_values, marker :{color:otu_ids, size:sample_values}, mode: "markers"}]; 
