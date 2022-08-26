@@ -24,6 +24,7 @@ function getMetaData(userid) {
         // place the metadata on the html page in the metadata section
         let div = d3.select("#sample-metadata");
         div.html("");
+        console.log(userArray)
         Object.entries(userArray).forEach(([key,value]) => {
             key = key.toUpperCase()
             let h6 = div.append("h6");
