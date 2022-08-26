@@ -8,7 +8,8 @@ function buildSelector(){
             let option = dropdown.append("option");
             option.text(id).property("value");   
         });
-        getMetaData(data.names[0]) 
+        getMetaData(data.names[0]);
+        buildCharts(data.names[0]) 
 
     } );
 }
@@ -34,10 +35,37 @@ function getMetaData(userid) {
     } );
 }
 
+function buildCharts(userid) {
+    d3.json("samples.json").then((data)=>{
+        console.log(data)
+        let samples = data.samples;
+        let testSubject = samples.filter(subject => subject.id == userid)[0];
+        let otu_ids = testSubject.otu_ids;
+        let otu_labels = testSubject.otu_labels;
+        let sample_values = testSubject.sample_values;
+        
+        // Build Wash Frequency Gauge
+        
+        //Build the Bubble Graph
+        let bubbleGraph = [{x: otu_ids, y: sample_values, marker :{color:otu_ids, size:sample_values}, mode: "markers"}]; 
+        let bubbleLayout = {title: "Bacteria Cultures Per Sample", xaxis:{title:"OTU ID"}};
+        Plotly.newPlot("bubble", bubbleGraph, bubbleLayout)
+        
+        //Build the Bar Graph
+        let barOtu_ids = otu_ids.slice(0,10).map((d)=> "OTU " + d.toString()).reverse();
+        let barSample_values = sample_values.slice(0,10).reverse();
+        let barOtu_labels = otu_labels.slice(0,10).reverse()
+        let barGraph = [{x: barSample_values, y: barOtu_ids, type: "bar", orientation:"h", text: barOtu_labels}]; 
+        let barLayout = {title: "Top 10 Cultures found"};
+        Plotly.newPlot("bar", barGraph, barLayout);
+    });
+}
 
 function updatePage(userid) {
     console.log("New userid selected: " + userid);
-    getMetaData(userid);  }
+    getMetaData(userid);  
+    buildCharts(userid);
+}
 
 buildSelector()
 
