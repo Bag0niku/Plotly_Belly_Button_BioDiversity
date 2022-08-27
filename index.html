@@ -5,22 +5,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Bellybutton Biodiversity</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script type="text/javascript" src="https://d3js.org/d3.v5.min.js" defer></script> -->
+  <link rel="stylesheet" src="static/css/style.css">
+  <script type="text/javascript" src="https://d3js.org/d3.v5.min.js" defer></script>
+  <!-- {background-size: 100% 100%;}-->
+  <style>  
+    .jumbotron {
+        background-image: url(static/images/microbes-1.jpg);
+        background-size: cover;
+        text-align:center;
+        padding: 20%;
+        align-content: center;
+                
+    }
+    .container {
+        background-color:darkslategray
+    }
+    .row {
+        padding : 20px
+    }
+    .well, .panel-body {
+        background-color:burlywood ;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+            font-weight: bolder;
+    }
+  </style>
 </head>
 
-<body>
+<body  style="background-color:darkslategray">
 
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
+        <h1 style="background-color:burlywood;">Belly Button Biodiversity Dashboard <br><small style="color: black; font-size: large;">Use the interactive charts below to explore the dataset</small></h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row" >
       <div class="col-md-2">
         <div class="well">
           <h5>Test Subject ID No.:</h5>
@@ -29,7 +53,7 @@
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
+            <h4 class="panel-title">Demographic Info</h4>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
